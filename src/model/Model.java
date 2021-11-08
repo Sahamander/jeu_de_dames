@@ -81,7 +81,7 @@ public class Model implements BoardGame<Coord> {
 					this.remove(toCapturePieceCoord);
 
 					// promotion éventuelle de la pièce après déplacement 
-					if () {	// TODO : Test à changer atelier 3
+					if (true) {	// TODO : Test à changer atelier 3
 						
 						// TODO atelier 3
 					}
