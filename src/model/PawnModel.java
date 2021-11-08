@@ -6,7 +6,7 @@ import java.util.List;
 
 import atelier1.nutsAndBolts.PieceSquareColor;
 
-public class PawnModel implements PieceModel{
+public class PawnModel extends AbstractPieceModel{
 
 	private Coord coord;
 	private PieceSquareColor pieceColor;
@@ -18,29 +18,6 @@ public class PawnModel implements PieceModel{
 		this.coord = coord;
 		this.pieceColor = pieceColor;
 		this.direction = PieceSquareColor.BLACK.equals(this.getPieceColor()) ? -1 : 1;
-	}
-
-	@Override
-	public char getColonne() {
-		return coord.getColonne();
-	}
-	@Override
-	public int getLigne() {
-		return coord.getLigne();
-	}
-	@Override
-	public boolean hasThisCoord(Coord coord) {
-		return this.coord.equals(coord);
-	}
-
-	@Override
-	public void move(Coord coord) {
-		this.coord = coord; 
-	}
-
-	@Override
-	public PieceSquareColor getPieceColor() {
-		return pieceColor;
 	}
 	
 	@Override

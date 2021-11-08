@@ -100,7 +100,7 @@ public class TestModel1 {
 		System.out.println("isMovePiecePossible ('b',4) -> ('c',5) = " + 
 							model.isMovePiecePossible(new Coord('b',4), new Coord('c',5), false));	// true
 		System.out.println("movePiece ('b',4) -> ('c',5) = move OK - Cf. damier ci-dessous" );
-							model.movePiece(new Coord('b',4), new Coord('c',5));	// move OK visible sur affichage 
+							//model.movePiece(new Coord('b',4), new Coord('c',5));	// move OK visible sur affichage
 		System.out.println(model);
 	
 		model.switchGamer(); // Changement joueur - c'est au tour des noirs

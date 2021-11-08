@@ -81,7 +81,7 @@ public class Model implements BoardGame<Coord> {
 					this.remove(toCapturePieceCoord);
 
 					// promotion éventuelle de la pièce après déplacement 
-					if (true) {	// TODO : Test à changer atelier 3
+					if () {	// TODO : Test à changer atelier 3
 						
 						// TODO atelier 3
 					}
@@ -135,9 +135,8 @@ public class Model implements BoardGame<Coord> {
 	 * ou pas de pièce à prendre
 	 */
 	private boolean isThereMaxOnePieceOnItinerary(Coord toMovePieceCoord, Coord targetSquareCoord) {
-		boolean isThereMaxOnePieceOnItinerary = false; // TODO Atelier 2 - initialiser à false
+		boolean isThereMaxOnePieceOnItinerary = false;
 
-		// TODO Atelier 2
 		List<Coord> listCoord = implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
 		if(listCoord != null)
 		{
@@ -167,7 +166,6 @@ public class Model implements BoardGame<Coord> {
 	private Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		Coord toCapturePieceCoord = null;
 
-		// TODO Atelier 2
 		List<Coord> lcoord = implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
 		if(lcoord != null && lcoord.size() == 1)
 		{
@@ -195,7 +193,7 @@ public class Model implements BoardGame<Coord> {
 	 * @param targetSquareCoord
 	 * Déplacement effectif de la PieceModel
 	 */
-	 void movePiece(Coord toMovePieceCoord, Coord targetSquareCoord) { // TODO : remettre en "private" après test unitaires
+	 private void movePiece(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		this.implementor.movePiece(toMovePieceCoord, targetSquareCoord);
 	}
 

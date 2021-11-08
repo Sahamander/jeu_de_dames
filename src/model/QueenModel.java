@@ -10,7 +10,7 @@ import atelier1.nutsAndBolts.PieceSquareColor;
  *
  *le mode de déplacement et de prise de la reine est différent de celui du pion
  */
-public class QueenModel implements PieceModel {
+public class QueenModel extends AbstractPieceModel {
 
 	public QueenModel(Coord coord, PieceSquareColor pieceColor) {
 		super();
@@ -19,57 +19,45 @@ public class QueenModel implements PieceModel {
 	private Coord coord;
 	private PieceSquareColor pieceColor;
 
-
-	@Override
-	public char getColonne() {
-		char col = 'z';
-		
-		// TODO atelier 3
-		
-		return col;
-	}
-	
-	@Override
-	public int getLigne() {
-		int ligne = -1;
-		
-		// TODO atelier 3
-		
-		return ligne;
-	}
-	
-	@Override
-	public boolean hasThisCoord(Coord coord) {
-		boolean hasThisCoord = false;
-		
-		// TODO atelier 3
-		
-		return hasThisCoord;
-	}
-
-	@Override
-	public void move(Coord coord) {
-		
-		// TODO atelier 3
-		
-	}
-
-	@Override
-	public PieceSquareColor getPieceColor() {
-		PieceSquareColor pieceSquareColor = null;
-		
-		// TODO atelier 3
-		
-		return pieceSquareColor;
-	}
-
 	@Override
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
 
-		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
-		
-		// TODO atelier 3
-		
+		List<Coord> coordsOnItinery = new LinkedList<Coord>();
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+		int absColDistance = Math.abs(colDistance);
+		int absLigDistance = Math.abs(ligDistance);
+		if( absColDistance == absLigDistance ) {
+			if (colDistance > 0 && ligDistance > 0) { //Pièce noire vers le bas
+				char compteur = this.coord.getColonne();
+				for (int i = this.coord.getLigne()+1; i < targetCoord.getLigne(); i++) {
+					compteur +=1;
+					coordsOnItinery.add(new Coord(compteur, i));
+				}
+			}
+			else if(colDistance > 0 && ligDistance < 0) { // Pièce blanche vers le haut
+				char compteur = this.coord.getColonne();
+				for (int i = this.coord.getLigne()-1; i > targetCoord.getLigne(); i--) {
+					compteur +=1;
+					coordsOnItinery.add(new Coord(compteur, i));
+				}
+			}
+			else if(colDistance < 0 && ligDistance < 0) { //
+				char compteur = this.coord.getColonne();
+				for (int i = this.coord.getLigne()-1; i > targetCoord.getLigne(); i--) {
+					compteur --;
+					coordsOnItinery.add(new Coord(compteur, i));
+				}
+			}
+			else {
+				char compteur = this.coord.getColonne();
+				for (int i = this.coord.getLigne()+1; i < targetCoord.getLigne(); i++) {
+					compteur --;
+					coordsOnItinery.add(new Coord(compteur, i));
+				}
+			}
+		}
+
 		return coordsOnItinery;
 	}
 
@@ -78,9 +66,27 @@ public class QueenModel implements PieceModel {
 	@Override
 	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
 		boolean ret = false;
-		
-		// TODO atelier 3
-		
+
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+		int deltaLig = (int) Math.signum(ligDistance);
+
+		// Cas d'un déplacement en diagonale
+		if (Math.abs(colDistance) == Math.abs(ligDistance)){
+
+			// sans prise
+			if (!isPieceToCapture) {
+				if (Math.abs(colDistance) == 1) {
+					ret = true;
+				}
+			}
+			// avec prise
+			else {
+				if (Math.abs(colDistance) == 2) {
+					ret = true;
+				}
+			}
+		}
 		return ret;
 	}
 
